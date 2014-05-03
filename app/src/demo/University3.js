@@ -62,7 +62,7 @@ define(function(require, exports, module) {
     this.message = { identity: this.logoIdentity, msg: 1 };
     EventHandler.setInputHandler(this, this.eventIn);
     EventHandler.setOutputHandler(this, this.eventOut);
-    this.eventOut.pipe(this.eventIn);
+    this.eventIn.subscribe(this.eventOut);
     this.eventIn.on('movement', function(data) {
       data.identity.setOpacity(data.msg, {
         method: 'snap',
