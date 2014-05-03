@@ -22,6 +22,7 @@ define(function(require, exports, module) {
 
   function _createLogo() {
     var target  = 0,
+    limit = (Math.PI * 2),
     logo = new ImageSurface({
       size:   [100, 100],
       content: 'content/images/famous_logo.png',
@@ -34,18 +35,33 @@ define(function(require, exports, module) {
     }),
     rotationZ = new StateModifier({
       transform: Transform.rotateZ(0)
+    }),
+    identity = new Modifier({
+      transform: Transform.identity,
+      opacity : 1,
+      origin  : [0.2, 0.5],
+      size    : [100, 100]
     });
 
     logo.on('click', function() {
+      
       target = _setRotationTarget(target, Math.PI/4);
+      
       rotationZ.setTransform(Transform.rotateZ(target), {
         method:       'snap',
         dampingRatio: 0.2,
         period:       250
       });
+
+      identity.setOrigin([target / limit, target / limit], {
+        method:       'snap',
+        dampingRatio: 0.2,
+        period:       500
+      });
+    
     });
 
-    this.context.add(pos).add(rotationZ).add(logo);
+    this.context.add(pos).add(rotationZ).add(identity).add(logo);
   }
 
   function University1(context) {
