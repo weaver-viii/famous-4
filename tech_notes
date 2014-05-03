@@ -1,0 +1,269 @@
+
+
+Requiring is now settled.
+
+NEXT STEP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/-----------------------------------------------\
+
+
+
+// JS the good parts: https://www.youtube.com/watch?v=hQVTIJBZook
+
+// do not use with, do not use eval
+// what about inheritance? Avoiding it?
+// === always use the triple
+// if (value == null) --> two errors cancel each other out..
+// if (value === undefined) --> correct
+// for..in statement mixes inherited functions with the desired ones
+// this is a common source of errors
+// bad heritage: floating point arithmetic 0.1 + 0.2 !== 0.3
+// ++ and -- buffer overruns and so on
+// switch: modeled after GOTO: always needs break; huge bugs!
+// GOOD PARTS: Lambda, Dynamic objects, Loose Typing, Object literals
+// Lambda: 
+// Dynamic Objects: easy customization of objects
+// Object literals: describing objects
+// Two schools of inheritance: Prototypal (JS alone)
+// Prototypal inheritance: 
+/*
+
+  Class-free
+  Objects iherit from objects
+  Object contains a link to another object: delegation:
+  Differential inheritance
+
+  var newObject = Object.create(oldObject);
+  It's now in the latest version of JS
+  OLD PROBLEM: 3 different.. new, prototype, ...
+
+  new REQUIRED when calling a constructor
+  global object is clobbered by the constructor... dangerous!
+
+  AVOIDING GLOBALS
+
+  var something = function (n) { var names... return names}
+  problem is names will be initialized each time"
+  another way: closure
+  var .. function
+    names
+    return function (n) {
+      return names[n];
+    }
+}();
+
+  GENERALIZING THIS:
+
+  var singleton = function () {
+    var private
+    function privateFunc
+    return {
+      firstMethod
+    };
+  }(); // calling this function
+
+  POWER CONSTRUCTOR
+  1. make an object" Object.create
+
+  2. Define some vars and funcs : private memebers
+
+  3. Augment the object with privileged methods
+
+  4. return the object
+
+  function __ (x) {
+     var thing = otherMaker(x);
+     var secret = f(x);
+     thing.priv = function() {
+  
+     };
+     return thing;
+  }
+
+  The reason this works is closure in function
+  has a reference to the environment in which it was created:
+  one of the best parts of Javascript
+  JavaScript: block {
+    works well in Javascript. No newline.
+  }
+
+  return // inserts quiet semicolon insertion!!!
+  { // gets interpreted as a block
+    ok: false
+  };
+
+  SILENT ERROR ---> superbad!
+  'why am I betting my career on this piece of crap?'
+
+*/
+
+
+
+/-----------------------------------------\
+
+Pivot Sat. 20.00
+
+Ran into difficulties in debugging, it is still Beta.. problems
+
+Unity3D responds to Famo.us
+(and they have some serious UI built for it)
+---> jump to Unity! Pivot:
+Demo is for the Unity WebGL player running in Chrome 35
+
+https://blog.mozilla.org/blog/2014/03/18/mozilla-and-unity-bring-unity-game-engine-to-webgl/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/----------------------------------------\
+
+Famo.us nodes:
+  renderable
+  modifier
+
+Surface           div
+ImageSurface      img
+InputSurface      input
+CanvasSurface     canvas
+VideoSurface      video
+ContainerSurface  nests a surface --> 
+                  used for clipping {overflow: hidden}
+
+Suface:
+  render from a template
+  MVC to bind data to its content
+  surfaces encapsulate animations
+  Surfaces contents should be static / not update often (repaint)
+
+Modifiers:
+  Responsible for the layout and visibility of the render tree below
+
+Views:
+
+events
+state
+example: ScrollView
+
+# accepts views, other nodes, other scrollviews, surfaces...
+scrollview = new ScrollView
+scrollview.sequenceFrom([S1, S2, S3])
+
+# unlike the DOM, there is no performance degradation:
+# everything gets flattened by the time it reaches the DOM
+
+requestAnimationFrame API is internally used by Famo.us
+
+
+
+
+/----------------------------------------\
+
+
+logo = new ImageSurface {
+  size: [200, 200]
+  content: '/content/images/famous_logo.png'
+}
+
+logopos = new StateModifier {
+  origin: [0.5, 0.5]
+  transform: Transform.translate(0, 0, 0)
+}
+
+hellopos = new StateModifier {
+  opacity: 0.5
+  transform: Transform.translate(40, 0, 0)
+}
+
+jellopos = new StateModifier {
+  opacity: 0.8
+  transform: Transform.translate(400, 0, 0)
+}
+
+rotation = new StateModifier {
+  transform: Transform.rotateZ(Math.PI/4)
+}
+
+hello = 
+  * size: [320, true]
+    content: '<p>hello</p>'
+    properties:
+      * background-color: '#FA5C4F'
+        text-align: 'right'
+        font-size: '3.2rem'
+        border-radius: '15px' 
+        color: 'white'
+        font-family: 'sans-serif'
+        margin: '0'
+        padding: '0'
+        user-select: 'none'
+
+jello = 
+  * size: [320, true]
+    content: 'jello'
+    properties:
+      * background-color: '#FA5C4F'
+        text-align: 'center'
+        font-size: '3.2rem'
+        border-radius: '15px' 
+        color: 'white'
+        font-family: 'sans-serif'
+        margin: '2rem 1rem'
+        padding: '0.1rem'
+        user-select: 'none'
+
+hello-world = new Surface hello
+jello-world = new Surface jello
+
+node  = mainContext.add(logopos).add(rotation).add(logo)
+node2 = mainContext.add(hellopos).add(hello-world)
+node3 = mainContext.add(jellopos).add(jello-world)
+
+jello-world.on 'click', ->
+  hellopos.setTransform Transform.rotateZ(0.75), { duration : 2000, curve: Easing.inOutElastic }, ->
+    hello-world.setContent 'bye'
+
+Engine.on 'resize', ->
+  jello-world.setContent 'resized'
+  logopos.setTransform Transform.rotateZ(Math.PI), { duration : 400, curve: Easing.inOutElastic }
+
+
+/-------------------------------------------------------\
+
+. Jade now builds into dist/template (need to add each file into the build)
+. SASS is in action: load an html component into a surface with Famo.us to see the results
+
+Famo.us public beta:
+mikko.mutanen@fjord.fi
+U...0
+
+

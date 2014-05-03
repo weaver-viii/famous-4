@@ -1,0 +1,24 @@
+/* compiled SASS */
+/* line 1, app.sass */
+* {
+  background: none;
+  font-size: 10px;
+  color: white;
+  font-family: "Gill Sans", sans-serif;
+}
+
+/* line 7, app.sass */
+div {
+  font-size: 2.4rem;
+}
+
+/* line 10, app.sass */
+body {
+  background: #eeeeee;
+}
+
+/* line 13, app.sass */
+.annotation {
+  font-family: "Bitstream Vera Sans Mono";
+  font-size: 18px;
+}
