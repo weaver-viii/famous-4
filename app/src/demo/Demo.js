@@ -10,7 +10,8 @@ define(function(require, exports, module) {
   //    Scrollview    = require('famous/views/Scrollview'),
   //    Test          = require('./Test'),
       University1   = require('./University1'),
-      University2   = require('./University2');
+      University2   = require('./University2'),
+      University3   = require('./University3');
 
   function _init() {
   }
@@ -27,6 +28,7 @@ define(function(require, exports, module) {
 
     var animation   = new University1(context);
     var physics     = new University2(context);
+    var events      = new University3(context);
 
     context.add(this);
     context.setPerspective(1000);

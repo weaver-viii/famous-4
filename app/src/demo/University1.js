@@ -1,14 +1,11 @@
 define(function(require, exports, module) {
   'use strict';
 
-  //var View = require('famous/core/View');
   var ImageSurface    = require('famous/surfaces/ImageSurface'),
       Modifier        = require('famous/core/Modifier'),
       StateModifier   = require('famous/modifiers/StateModifier'),
       Transform       = require('famous/core/Transform'),
       Transitionable  = require('famous/transitions/Transitionable');
-
-  require('famous/inputs/FastClick');
 
   function _createLogo() {
     var state = new Transitionable(0),

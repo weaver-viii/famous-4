@@ -1,15 +1,12 @@
 define(function(require, exports, module) {
   'use strict';
 
-  //var View = require('famous/core/View');
   var ImageSurface    = require('famous/surfaces/ImageSurface'),
       Modifier        = require('famous/core/Modifier'),
       StateModifier   = require('famous/modifiers/StateModifier'),
       Transform       = require('famous/core/Transform'),
       Transitionable  = require('famous/transitions/Transitionable'),
       SnapTransition  = require('famous/transitions/SnapTransition');
-
-  require('famous/inputs/FastClick');
 
   Transitionable.registerMethod('snap', SnapTransition);
 
@@ -64,10 +61,10 @@ define(function(require, exports, module) {
     this.context.add(pos).add(rotationZ).add(identity).add(logo);
   }
 
-  function University1(context) {
+  function University2(context) {
     this.context = context;
     _createLogo.call(this);
   }
 
-  module.exports = University1;
+  module.exports = University2;
 });
