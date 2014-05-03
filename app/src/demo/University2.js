@@ -53,12 +53,12 @@ define(function(require, exports, module) {
         period:       250
       });
 
-      identity.setOrigin([target / limit, target / limit], {
+      identity.setOrigin([ target / limit, target / limit ], {
         method:       'snap',
         dampingRatio: 0.2,
         period:       500
       });
-    
+
     });
 
     this.context.add(pos).add(rotationZ).add(identity).add(logo);
