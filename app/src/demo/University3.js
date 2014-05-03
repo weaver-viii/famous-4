@@ -1,6 +1,8 @@
 define(function(require, exports, module) {
   'use strict';
 
+  // missing from Events: Filtering and EventArbiter.setMode
+
   var ImageSurface    = require('famous/surfaces/ImageSurface'),
       Engine          = require('famous/core/Engine'),
       Modifier        = require('famous/core/Modifier'),
@@ -63,7 +65,7 @@ define(function(require, exports, module) {
     EventHandler.setInputHandler(this, this.eventIn);
     EventHandler.setOutputHandler(this, this.eventOut);
     this.eventIn.subscribe(this.eventOut);
-    this.eventIn.on('movement', function(data) {
+    this.on('movement', function(data) {
       data.identity.setOpacity(data.msg, {
         method: 'snap',
         dampingRatio: 0.4,
