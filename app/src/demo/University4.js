@@ -12,7 +12,12 @@ define(function(require, exports, module) {
 
   Transitionable.registerMethod('snap', SnapTransition);
 
-  function _animate() {
+  function _animate(rootIdentity) {
+    rootIdentity.setOrigin([0.5, 0.75], {
+      method: 'snap',
+      dampingRatio: 0.5,
+      period: 1000
+    });
     this.setTransform(Transform.translate(200, 90, 50), {
       method: 'snap',
       dampingRatio: 0.5,
@@ -20,12 +25,25 @@ define(function(require, exports, module) {
     });
   }
 
-  function _resetAnimation() {
+  function _resetAnimation(rootIdentity) {
+    rootIdentity.setOrigin([0.5, 0.5], {
+      method: 'snap',
+      dampingRatio: 0.5,
+      period: 1000
+    });
     this.setTransform(Transform.translate(200, 0, 0), {
       method: 'snap',
       dampingRatio: 0.5,
       period: 1000
     });
+  }
+
+  function _setTimer() {
+    Timer.setTimeout(function() {
+      _animate.call(this.modifier, this.identity);
+      _resetAnimation.call(this.modifier, this.identity);
+      _setTimer.call(this);
+    }.bind(this), 2000);
   }
 
   function Lesson(context) {
@@ -50,15 +68,17 @@ define(function(require, exports, module) {
       transform: Transform.translate(200, 0, 0) 
     }),
 
+    alpha = new StateModifier({ 
+      opacity: 0.2 
+    }),
+
     node = this.context.add(identity);
-    node.add(logo);
+    node.add(alpha).add(logo);
     node.add(mod2).add(logo2);
     this.modifier = mod2;
-    
-    Timer.setTimeout(function(){
-      _animate.call(this.modifier);
-      _resetAnimation.call(this.modifier);      
-    }.bind(this), 2000);
+    this.identity = identity;
+
+    _setTimer.call(this);
   }
 
   module.exports = Lesson;
