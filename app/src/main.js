@@ -9,4 +9,5 @@ define(function(require, exports, module, util) {
 
     // LiveScript in app/src/livescript : TRIED AND FAILED
     // requirejs(['app_livescript']);
+    return demo;
 });
