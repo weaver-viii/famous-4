@@ -7,8 +7,7 @@ require.config({
         famous: '../lib/famous',
         requirejs: '../lib/requirejs/require',
         almond: '../lib/almond/almond',
-        'famous-polyfills': '../lib/famous-polyfills/index',
-        jade: '../lib/jade/jade'
+        'famous-polyfills': '../lib/famous-polyfills/index'
     }
 });
 require(['main']);

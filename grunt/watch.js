@@ -39,13 +39,11 @@ module.exports = function (grunt) {
       files: ['<%= config.app %>/styles/{,*/}*.css']
     },
     jade: {
-      files: ['<%= config.app %>/template/{,*/}*.jade',
-              '<%= config.app %>/{,*/}*.jade'],
+      files: ['<%= config.app %>/template/{,*/}*.jade'],
       tasks: ['jade']
     },
     html: {
-      files: ['<%= config.app %>/template/{,*/}*.html',
-              '<%= config.app %>/{,*/}*.html'],
+      files: ['<%= config.app %>/template/{,*/}*.html'],
       tasks: ['processhtml:dev']
     },
     content: {

@@ -10,8 +10,8 @@ module.exports =  {
       baseUrl: '<%= config.app %>/src',
       mainConfigFile: '<%= config.app %>/src/requireConfig.js',
       name: 'almond',
-      include: ['main'],
-      insertRequire: ['main'],
+      include: ['main', 'demo/demo'],
+      insertRequire: ['main', 'demo/demo'],
       out: '<%= config.dist %>/src/main.js',
       wrap: true
     }
