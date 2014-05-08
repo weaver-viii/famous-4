@@ -58,6 +58,8 @@ define(function(require, exports, module) {
     }),
 
     identity = new Modifier({
+      // One thing to remember about origin is that you must 
+      // specify the size of the child and parent elements
       transform: Transform.identity,
       opacity : 1,
       origin  : [0.5, 0.5],
