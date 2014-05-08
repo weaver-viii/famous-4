@@ -8,7 +8,9 @@ module.exports = {
       }
     },
     files: {
-      'dist/template/test.html': 'app/template/test.jade'
+      'app/index.html'              : 'app/index.jade',
+      'app/template/test.html'      : 'app/template/test.jade',
+      'app/template/lesson.html'    : 'app/template/lesson.jade',
     }
   }
 }

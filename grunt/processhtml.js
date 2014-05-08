@@ -1,7 +1,8 @@
 module.exports = {
   dev: {
     files: {
-      '.tmp/index.html': ['<%= config.app %>/index.html']
+      '.tmp/index.html': ['<%= config.app %>/index.html'],
+      '<%= config.dist %>/index.html': ['<%= config.app %>/index.html']
     }
   },
   dist: {

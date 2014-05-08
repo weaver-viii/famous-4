@@ -7,8 +7,7 @@ define(function(require, exports, module) {
       Transform       = require('famous/core/Transform'),
       Transitionable  = require('famous/transitions/Transitionable'),
       SnapTransition  = require('famous/transitions/SnapTransition'),
-      Timer           = require('famous/utilities/Timer'),
-      GridLayout      = require('famous/views/GridLayout');
+      Timer           = require('famous/utilities/Timer');
 
   Transitionable.registerMethod('snap', SnapTransition);
 

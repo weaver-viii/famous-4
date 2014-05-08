@@ -12,9 +12,9 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'jade',
     'sass',
     //'livescript',
-    'jade',
     'lint',
     'processhtml:dist',
     'useminPrepare',

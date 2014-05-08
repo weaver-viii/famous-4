@@ -3,10 +3,11 @@ define(function(require, exports, module) {
   'use strict';
 
   var Engine        = require('famous/core/Engine'),
-      University1   = require('./University1'),
-      University2   = require('./University2'),
-      University3   = require('./University3'),
-      University4   = require('./University4');
+//      University1   = require('./University1'),
+//      University2   = require('./University2'),
+//      University3   = require('./University3'),
+//      University4   = require('./University4'),
+      Lesson        = require('./Lesson');
 
   function _init() {
   }
@@ -21,15 +22,19 @@ define(function(require, exports, module) {
 
     _globalEvents.call(this);
 
-    var animation   = new University1(context);
-    var physics     = new University2(context);
-    var events      = new University3(context);
-    var layout      = new University4(context);
+    //var animation   = new University1(context);
+    //var physics     = new University2(context);
+    //var events      = new University3(context);
+    //var layout      = new University4(context);
+
+    var layoutDesignExample = new Lesson(context);
 
     context.add(this);
     context.setPerspective(1000);
 
     _init();
+
+    return layoutDesignExample;
   }
 
   module.exports = Demo;
