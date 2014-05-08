@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'jade',
+    //'jade',
     'sass',
     //'livescript',
     'lint',
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
     'copy:dist',
     'rev',
     'usemin',
-    'htmlmin'
+    //'htmlmin'
   ]);
 
   grunt.registerTask('lint', [

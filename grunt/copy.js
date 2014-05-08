@@ -10,7 +10,7 @@ module.exports = {
         '**/**.{ico,png,txt,jpg,svg,wof,ttf}',
         '.htaccess',
         'images/{,*/}*.webp',
-        // '{,*/}*.html',
+        '{,*/}*.html',
         'styles/fonts/{,*/}*.*',
         'lib/famous/**/**.css'
       ]
